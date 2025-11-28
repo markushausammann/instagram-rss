@@ -134,6 +134,9 @@ class RSSGenerator:
         """Create full HTML content for RSS item."""
         html_parts = []
 
+        # Add import note
+        html_parts.append(f'<p style="font-style: italic; color: #666; font-size: 14px;">Imported from Instagram.</p>')
+
         # Add caption/title as body text
         if post.title:
             html_parts.append(f'<p>{post.title}</p>')

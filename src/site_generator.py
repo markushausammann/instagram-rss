@@ -162,6 +162,10 @@ class SiteGenerator:
             <time>{date_str}</time>
         </div>
 
+        <p style="font-style: italic; color: #666; font-size: 14px; margin-bottom: 10px;">
+            Imported from Instagram.
+        </p>
+
         <p style="font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
             {full_text}
         </p>
