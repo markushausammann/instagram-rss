@@ -47,7 +47,7 @@ The static site will include all posts, but only selected posts will appear in t
 python3 generate_site.py
 ```
 
-This will create a `site/` directory with:
+This will create a `docs/` directory with:
 - `index.html` - Homepage listing all posts
 - `posts/` - Individual post pages
 - `images/` - All your Instagram images
@@ -61,7 +61,7 @@ This will create a `site/` directory with:
 
 Or manually:
 ```bash
-cd site
+cd docs
 python3 -m http.server 8000
 ```
 
@@ -88,7 +88,7 @@ This repo can be deployed directly to GitHub Pages:
 3. Under "Build and deployment", select:
    - Source: Deploy from a branch
    - Branch: main
-   - Folder: `/site`
+   - Folder: `/docs`
 4. GitHub will provide your site URL (e.g., `https://yourusername.github.io/instagram-archive/`)
 5. Your RSS feed will be at: `https://yourusername.github.io/instagram-archive/feed.xml`
 
@@ -120,5 +120,5 @@ insta-export/
 ## Customization
 
 Edit `generate_site.py` to change:
-- `OUTPUT_DIR` - Where to generate the site (default: `site/`)
+- `OUTPUT_DIR` - Where to generate the site (default: `docs/`)
 - `BASE_URL` - Your production URL (update before deploying)

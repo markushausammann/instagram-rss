@@ -14,7 +14,7 @@ instaSubstack/
 │   ├── instagram_json_parser.py  # JSON format parser
 │   ├── site_generator.py         # Static site generator
 │   └── rss_generator.py          # RSS feed generator
-├── site/                   # Generated static site (deploy this)
+├── docs/                   # Generated static site (deploy this)
 │   ├── index.html
 │   ├── feed.xml
 │   ├── posts/
@@ -28,7 +28,7 @@ instaSubstack/
 
 - **generate_site.py**: Run this to generate the static site
 - **select_posts.py**: Run this to choose which posts appear in RSS feed
-- **site/**: Deploy this directory to hosting (GitHub Pages, Netlify, etc.)
+- **docs/**: Deploy this directory to hosting (GitHub Pages, Netlify, etc.)
 - **feed.xml**: The RSS feed that Substack imports
 
 ## What Gets Committed
@@ -36,6 +36,6 @@ instaSubstack/
 ✅ Source code (src/)
 ✅ Scripts (generate_site.py, select_posts.py)
 ✅ Documentation (README.md)
-✅ Generated site (site/)
+✅ Generated site (docs/)
 ❌ Instagram export (insta-export/)
 ❌ Post selection (selected_posts.json)

@@ -15,7 +15,7 @@ from site_generator import SiteGenerator
 def main():
     """Main entry point."""
     EXPORT_DIR = Path("insta-export")
-    OUTPUT_DIR = Path("site")
+    OUTPUT_DIR = Path("docs")
     BASE_URL = "http://localhost:8000"
 
     if not EXPORT_DIR.exists():
@@ -78,7 +78,7 @@ def main():
     print("Site generated successfully!")
     print(f"{'='*60}")
     print(f"\nTo view the site:")
-    print(f"  1. cd site")
+    print(f"  1. cd docs")
     print(f"  2. python3 -m http.server 8000")
     print(f"  3. Open http://localhost:8000 in your browser")
     print(f"\nRSS feed URL: http://localhost:8000/feed.xml")
