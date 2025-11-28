@@ -50,14 +50,29 @@ class SiteGenerator:
         print(f"✓ {len(rss_posts)} posts in RSS feed")
         print(f"✓ RSS feed: {self.output_dir}/feed.xml")
 
-    def _truncate_title(self, text: str, max_length: int = 100) -> str:
-        """Truncate title to max_length characters, ending at word boundary."""
+    def _truncate_title(self, text: str, max_length: int = 60) -> str:
+        """Truncate title smartly at sentence/phrase boundaries."""
         if len(text) <= max_length:
             return text
 
-        # Truncate at word boundary
-        truncated = text[:max_length].rsplit(' ', 1)[0]
-        return truncated + '...'
+        # First, try to cut at first sentence (period, exclamation, question mark)
+        # but only if we get at least a few words (15 chars minimum)
+        for delimiter in ['. ', '! ', '? ']:
+            pos = text.find(delimiter)
+            if 15 <= pos <= max_length:
+                return text[:pos + 1]  # Include the punctuation
+
+        # Next, try to cut at comma if we get a decent amount of text
+        comma_pos = text.find(', ')
+        if 15 <= comma_pos <= max_length:
+            return text[:comma_pos]
+
+        # Fall back to word boundary truncation
+        if len(text) > max_length:
+            truncated = text[:max_length].rsplit(' ', 1)[0]
+            return truncated + '...'
+
+        return text
 
     def _copy_post_images(self, post: InstagramPost, parser: InstagramParser):
         """Copy post images to output directory and update paths."""
@@ -93,7 +108,7 @@ class SiteGenerator:
 
         # Truncate title if too long, but keep full text for body
         full_text = post.title or 'Instagram Post'
-        title = self._truncate_title(full_text, max_length=100)
+        title = self._truncate_title(full_text, max_length=60)
 
         # Generate images HTML
         images_html = ""
@@ -188,7 +203,7 @@ class SiteGenerator:
             post_id = f"post-{idx + 1}"
 
             # Truncate title for index page
-            title = self._truncate_title(post.title or 'Instagram Post', max_length=80)
+            title = self._truncate_title(post.title or 'Instagram Post', max_length=60)
 
             # Get first image for thumbnail
             thumb = post.images[0] if post.images else ""

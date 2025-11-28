@@ -19,14 +19,29 @@ class RSSGenerator:
         """Initialize RSS generator with base URL."""
         self.base_url = base_url.rstrip('/')
 
-    def _truncate_title(self, text: str, max_length: int = 100) -> str:
-        """Truncate title to max_length characters, ending at word boundary."""
+    def _truncate_title(self, text: str, max_length: int = 60) -> str:
+        """Truncate title smartly at sentence/phrase boundaries."""
         if len(text) <= max_length:
             return text
 
-        # Truncate at word boundary
-        truncated = text[:max_length].rsplit(' ', 1)[0]
-        return truncated + '...'
+        # First, try to cut at first sentence (period, exclamation, question mark)
+        # but only if we get at least a few words (15 chars minimum)
+        for delimiter in ['. ', '! ', '? ']:
+            pos = text.find(delimiter)
+            if 15 <= pos <= max_length:
+                return text[:pos + 1]  # Include the punctuation
+
+        # Next, try to cut at comma if we get a decent amount of text
+        comma_pos = text.find(', ')
+        if 15 <= comma_pos <= max_length:
+            return text[:comma_pos]
+
+        # Fall back to word boundary truncation
+        if len(text) > max_length:
+            truncated = text[:max_length].rsplit(' ', 1)[0]
+            return truncated + '...'
+
+        return text
 
     def _extract_hashtags(self, text: str) -> List[str]:
         """Extract hashtags from text."""
