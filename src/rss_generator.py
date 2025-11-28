@@ -7,6 +7,10 @@ from instagram_parser import InstagramPost
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 
+# Register namespaces for proper XML generation
+ET.register_namespace('atom', 'http://www.w3.org/2005/Atom')
+ET.register_namespace('content', 'http://purl.org/rss/1.0/modules/content/')
+
 
 class RSSGenerator:
     """Generates an RSS 2.0 feed from Instagram posts."""
