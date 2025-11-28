@@ -98,7 +98,7 @@ class SiteGenerator:
         # Generate images HTML
         images_html = ""
         for img_path in post.images:
-            images_html += f'        <img src="{img_path}" alt="Instagram post image" style="max-width: 100%; margin: 20px 0;">\n'
+            images_html += f'        <img src="{img_path}" alt="Instagram post image" style="max-width: 100%; margin: 30px 0; display: block;">\n'
 
         # Generate hashtags HTML
         hashtags_html = ""

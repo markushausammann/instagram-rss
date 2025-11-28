@@ -151,7 +151,7 @@ class RSSGenerator:
             # Convert relative path to absolute URL
             img_filename = Path(img_path).name
             img_url = f"{self.base_url}/images/{img_filename}"
-            html_parts.append(f'<p><img src="{img_url}" style="max-width: 100%;" /></p>')
+            html_parts.append(f'<p style="margin: 30px 0;"><img src="{img_url}" style="max-width: 100%; display: block;" /></p>')
 
         # Add location if available
         if post.latitude and post.longitude:
