@@ -209,6 +209,12 @@ class SiteGenerator:
             thumb = post.images[0] if post.images else ""
             thumb_html = f'<img src="{thumb.replace("../", "")}" style="max-width: 200px; margin-right: 20px;">' if thumb else ""
 
+            # Generate hashtags for index
+            hashtags_index_html = ""
+            if post.hashtags:
+                tags = ' '.join([f'<span style="display: inline-block; background: #e1f5fe; color: #01579b; padding: 3px 6px; margin: 2px; border-radius: 3px; font-size: 12px;">#{tag}</span>' for tag in post.hashtags])
+                hashtags_index_html = f'<div style="margin-top: 8px;">{tags}</div>'
+
             posts_html += f"""
         <article style="border-bottom: 1px solid #eee; padding: 20px 0; display: flex; gap: 20px;">
             {thumb_html}
@@ -218,6 +224,7 @@ class SiteGenerator:
                 </h2>
                 <p style="color: #666;">{post.date}</p>
                 <p>{len(post.images)} image(s)</p>
+                {hashtags_index_html}
             </div>
         </article>
 """
