@@ -16,7 +16,7 @@ def main():
     """Main entry point."""
     EXPORT_DIR = Path("insta-export")
     OUTPUT_DIR = Path("docs")
-    BASE_URL = "http://localhost:8000"
+    BASE_URL = "https://markushausammann.github.io/instagram-rss"
 
     if not EXPORT_DIR.exists():
         print(f"Error: Export directory not found: {EXPORT_DIR}")
