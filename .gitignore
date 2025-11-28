@@ -1,0 +1,32 @@
+# Instagram export data (don't commit personal data)
+insta-export/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+
+# Post selection (personal choice, regenerate as needed)
+selected_posts.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
